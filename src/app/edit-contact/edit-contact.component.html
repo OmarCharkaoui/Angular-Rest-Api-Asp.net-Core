@@ -1,0 +1,38 @@
+<div class="container">
+
+    <form #myForm="ngForm">
+        <div class="form-group">
+            <input type="text" name="name" placeholder="Name" required #Name="ngModel" [ngClass]="{
+                            'form-control': true , 
+                            'is-invalid': !Name?.valid && Name?.touched,
+                            'is-valid': Name?.valid
+                           }" [(ngModel)]="contact.name">
+            <small *ngIf="Name?.errors?.required && Name?.touched"
+                class="form-text text-danger">Field is required</small>
+        </div>
+        <div class="form-group">
+            <input type="text" name="company" placeholder="company Name" required #company="ngModel" [ngClass]="{
+                            'form-control': true , 
+                            'is-invalid': !company?.valid && company?.touched,
+                            'is-valid': company?.valid
+                           }" [(ngModel)]="contact.company">
+            <small *ngIf="company?.errors?.required && company?.touched"
+                class="form-text text-danger">Field is required</small>
+        </div>
+        <div class="form-group">
+            <input type="text" name="email" placeholder="Email" required #email="ngModel" [ngClass]="{
+                            'form-control': true , 
+                            'is-invalid': !email?.valid && email?.touched,
+                            'is-valid': email?.valid
+                           }" [(ngModel)]="contact.email">
+            <small *ngIf="email?.errors?.required && email?.touched"
+                class="form-text text-danger">Field is required</small>
+        </div>
+
+        <button type="button" class="btn btn-success" [disabled]="!myForm.form.valid"
+            (click)="EditContact()">Save</button>
+            <a class="btn btn-secondary mx-2" [routerLink]="['/contacts',personeId]"  >Back to Contact</a>
+    </form>
+
+</div>
+

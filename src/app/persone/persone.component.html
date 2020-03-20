@@ -1,0 +1,47 @@
+
+
+  <div class="p-4 text-right">
+    <button class="btn btn-primary" [routerLink]="['/create-persone']" routerLinkActive="router-link-active" >Create New Persone</button>
+  </div>
+
+<div class="row" style="height: 400px;" >
+
+  <div class="col-md-4" *ngFor="let item of persone" >
+    <div class="card  mb-3" style="border: 1px solid rgb(2, 2, 2);" >
+      <div class="card-header font-weight-bold"> {{item.name}}</div>
+      <div class="card-body ">
+        <p class="card-text">Phone : {{item.phone}}</p>
+      </div>
+      <div class="card-footer  ">
+        <button class=" btn btn-success mx-1" [routerLink]="['/contacts',item.id]"> Contacts</button>
+        <button class="btn btn-primary text-white mx-1" [routerLink]="['/edit-persone/',item.id]" routerLinkActive="router-link-active"   >Edit</button>
+        <button class="btn btn-danger text-white" (click)="deletePersone(item.id)" >Delete</button>
+      </div>
+    
+    </div>
+  </div>
+
+</div>
+
+<div>
+  <ngb-pagination [(page)]="pageNumber" 
+  [pageSize]="pageSize"
+  [collectionSize]="pagination?.TotalCount" 
+  (pageChange)="getPersoneWithPagintion(pageNumber,pageSize)"
+  aria-label="Default pagination">
+</ngb-pagination>
+</div>
+
+
+
+
+<!-- <div>
+    <ngb-pagination [(page)]="pageNumber" 
+    [pageSize]="pageSize"
+    [collectionSize]="pagination?.TotalCount" 
+    (pageChange)="getPersoneWithPagintion(pageNumber,pageSize)"
+    aria-label="Default pagination">
+  </ngb-pagination>
+</div> -->
+
+<!-- [routerLink]="['/contacts',item.id]" -->

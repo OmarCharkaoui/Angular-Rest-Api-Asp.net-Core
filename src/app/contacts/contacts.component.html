@@ -1,0 +1,45 @@
+
+<div class="p-4 text-right">
+    <button class="btn btn-outline-primary" [routerLink]="['/create-contact',personeId]"  >Create New Contact To Persone <strong class="text-danger">
+        {{persone?.name | uppercase}}</strong></button>
+</div>
+<div class="row">
+
+    <div class="col"  >
+      <div class="card  mb-3" style="border: 1px solid rgb(2, 2, 2);" >
+        <h3 class="card-header font-weight-bold"> {{persone?.name}}</h3>
+       <div *ngIf="getlengthofdata()">
+            <div class="card-body ">
+            <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Company</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <tr *ngFor="let item of persone?.contacts">
+                        <td> {{item.name}} </td>
+                        <td>{{item.company}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <button class="btn btn-primary text-white mx-1" [routerLink]="['/edit-contact',item.id,personeId]" >Edit</button>
+                           
+                            <button class="btn btn-danger text-white mx-1" (click)="deleteContact(item.id)" >Delete</button>
+                        </td>
+                </tr>
+                    </tbody>
+            
+            </table>
+            </div>
+        </div>
+        <div class="card-body" *ngIf="!getlengthofdata()">
+                <h4 class="text-center" > Empty Contacts </h4>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  <button class="btn btn-secondary" [routerLink]="['/persone-list']" > Back To Home</button>
